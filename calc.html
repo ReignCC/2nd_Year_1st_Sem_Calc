@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background-color 0.5s;
+    }
+
+    #darkModeButton {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 20px 8px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      max-width: 150px;
+      font-weight: bold;
+    }
+
+    #calculator {
+      max-width: 400px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      font-weight: bold;
+    }
+
+    input {
+      width: calc(100% - 20px);
+      margin: 8px 0;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      transition: color 0.5s;
+    }
+
+    button {
+      width: calc(100% - 20px);
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #45a049;
+    }
+
+    body.dark-mode {
+      background-color: #333;
+    }
+
+    body.dark-mode #calculator {
+      background-color: #555;
+      color: #fff;
+    }
+
+    body.dark-mode label {
+      color: #4CAF50;
+    }
+
+    body.dark-mode h2 {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+
+<button id="darkModeButton" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+<div id="calculator">
+  <h2>1st Sem Calculator (IT2A)</h2>
+  <label for="CCIT102">CCIT102:</label>
+  <input type="number" id="CCIT102">
+
+  <label for="GEFIL01">GEFIL01:</label>
+  <input type="number" id="GEFIL01">
+
+  <label for="GELIT01">GELIT01:</label>
+  <input type="number" id="GELIT01">
+
+  <label for="INFASEC">INFASEC:</label>
+  <input type="number" id="INFASEC">
+
+  <label for="ITECC05">ITECC05:</label>
+  <input type="number" id="ITECC05">
+
+  <label for="PATH-F3">PATH-F3:</label>
+  <input type="number" id="PATH-F3">
+
+  <label for="GESCIE+">GESCIE+:</label>
+  <input type="number" id="GESCIE+">
+
+  <button onclick="calculateAverage()">Calculate Average</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  function calculateAverage() {
+    const CCIT102 = parseFloat(document.getElementById('CCIT102').value) || 0;
+    const GEFIL01 = parseFloat(document.getElementById('GEFIL01').value) || 0;
+    const GELIT01 = parseFloat(document.getElementById('GELIT01').value) || 0;
+    const INFASEC = parseFloat(document.getElementById('INFASEC').value) || 0;
+    const ITECC05 = parseFloat(document.getElementById('ITECC05').value) || 0;
+    const PATHF3 = parseFloat(document.getElementById('PATH-F3').value) || 0;
+    const GESCIEplus = parseFloat(document.getElementById('GESCIE+').value) || 0;
+
+    const sum = CCIT102 * 3 + GEFIL01 * 3 + GELIT01 * 3 + INFASEC * 3 + ITECC05 * 3 + PATHF3 * 2 + GESCIEplus * 3;
+    const average = sum / 20;
+
+    document.getElementById('result').innerText = `Your average grade is: ${average.toFixed(2)}`;
+  }
+
+  function toggleDarkMode() {
+    const body = document.body;
+    const calculator = document.getElementById('calculator');
+
+    if (body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      calculator.style.backgroundColor = '#fff';
+      calculator.style.color = '#333';
+    } else {
+      body.classList.add('dark-mode');
+      calculator.style.backgroundColor = '#555';
+      calculator.style.color = '#fff';
+    }
+  }
+</script>
+
+</body>
+</html>
